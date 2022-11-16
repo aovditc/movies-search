@@ -1,6 +1,8 @@
+import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { Alert } from 'react-bootstrap';
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
 interface SerializedError {
   name?: string;
@@ -22,7 +24,11 @@ function MoviesError({
     errorMessage = error.message;
   }
 
-  return <div>{errorMessage}</div>;
+  return (
+    <Alert key="danger" variant="danger" className="mt-4 mb-4">
+      {errorMessage}
+    </Alert>
+  );
 }
 
 MoviesError.propTypes = {

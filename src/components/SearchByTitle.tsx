@@ -1,5 +1,5 @@
 import React, { MutableRefObject, useCallback, useRef } from 'react';
-import { Button, Input } from '@mui/material';
+import { Button, InputGroup } from 'react-bootstrap';
 // @ts-ignore
 import { NodeJS } from 'node:timers';
 import PropTypes from 'prop-types';
@@ -16,14 +16,13 @@ interface SearchByTitleInput {
 function SearchByTitle({
   sendRequest
 }: SearchByTitleInput): React.ReactElement {
-  const inputRef = useRef();
+  const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
   let debounceTimeout: MutableRefObject<NodeJS.Timeout | null | undefined> =
     useRef();
 
   const sendInputValue = useCallback(() => {
     if (inputRef.current) {
-      // @ts-ignore
-      const { value } = inputRef.current.firstChild;
+      const { value } = inputRef.current;
 
       sendRequest(value);
     }
@@ -50,18 +49,22 @@ function SearchByTitle({
   );
 
   return (
-    <div className="search-by-title">
-      <label htmlFor="search-by-title">Search By Title:</label>
-      <Input
-        id="search-by-title"
-        className="movie-title-input"
-        onChange={onInputChange}
-        onKeyDown={onInputKeyDown}
-        ref={inputRef}
-      />
-      <Button variant="outlined" onClick={sendInputValue}>
-        Search
-      </Button>
+    <div className="search-by-title mt-4">
+      <InputGroup>
+        <span className="input-group-text" id="isearch-by-title">
+          Search By Title:
+        </span>
+        <input
+          type="text"
+          className="form-control"
+          aria-label="Sizing example input"
+          aria-describedby="search-by-title"
+          onChange={onInputChange}
+          onKeyDown={onInputKeyDown}
+          ref={inputRef}
+        />
+        <Button onClick={sendInputValue}>Search</Button>
+      </InputGroup>
     </div>
   );
 }

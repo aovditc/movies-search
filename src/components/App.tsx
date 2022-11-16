@@ -14,7 +14,7 @@ declare type moviesError = {
 
 function App() {
   // TODO: check type annotations if they are correct
-  const [title, setTitle] = useState<string | undefined>('Friends');
+  const [title, setTitle] = useState<string | undefined>('Toy Story');
   const { data: movies, error: moviesError } = useGetMoviesQuery({ title });
 
   const updateTitle = (value: string) => {
@@ -22,7 +22,7 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <div className="app mt-4">
       <h1>Movies Catalog</h1>
       <SearchByTitle sendRequest={updateTitle} />
       {moviesError && <MoviesError error={moviesError} />}
