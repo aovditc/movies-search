@@ -4,15 +4,20 @@ import { useGetMoviesQuery } from '../api';
 
 import SearchByTitle from './SearchByTitle';
 import MoviesTable from './MoviesTable';
+import MoviesError from './MoviesError';
 
 import '../styles/App.scss';
 
+declare type moviesError = {
+  message: string;
+};
+
 function App() {
   // TODO: check type annotations if they are correct
-  const [title, setTitle] = useState<String | undefined>('Friends');
-  const { data: movies } = useGetMoviesQuery({ title });
+  const [title, setTitle] = useState<string | undefined>('Friends');
+  const { data: movies, error: moviesError } = useGetMoviesQuery({ title });
 
-  const updateTitle = (value: String) => {
+  const updateTitle = (value: string) => {
     setTitle(value);
   };
 
@@ -20,7 +25,8 @@ function App() {
     <div className="app">
       <h1>Movies Catalog</h1>
       <SearchByTitle sendRequest={updateTitle} />
-      <MoviesTable movies={movies} />
+      {moviesError && <MoviesError error={moviesError} />}
+      {movies && <MoviesTable movies={movies} />}
     </div>
   );
 }

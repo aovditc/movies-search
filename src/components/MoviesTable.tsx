@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import {
   Paper,
   Input,
@@ -29,7 +29,9 @@ function MoviesTable({
   return (
     <div className="movies-table-container">
       {!movies || movies?.length === 0 ? (
-        <span>No movies found.</span>
+        <Fragment>
+          <span>No movies found.</span>
+        </Fragment>
       ) : (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="Movies table">

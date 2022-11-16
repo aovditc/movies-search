@@ -14,9 +14,12 @@ const api = createApi({
       transformResponse: (response: {
         Response: string;
         Search: movies;
+        Error: string | undefined;
       }): movies | undefined => {
         if (response.Response === 'True') {
           return response.Search;
+        } else {
+          throw Error(response.Error);
         }
 
         return undefined;
