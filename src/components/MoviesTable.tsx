@@ -41,7 +41,9 @@ function MoviesTable({
                   <Image src={movie.Poster} title={movie.Title} />
                 )}
               </td>
-              <td align="right">{movie.Title}</td>
+              <td align="right">
+                <span tabIndex={0}>{movie.Title}</span>
+              </td>
               <td align="right">{movie.Year}</td>
             </tr>
           ))}
