@@ -51,7 +51,7 @@ function SearchByTitle({
   return (
     <div className="search-by-title mt-4">
       <InputGroup>
-        <span className="input-group-text" id="isearch-by-title">
+        <span className="input-group-text" id="search-by-title">
           Search By Title:
         </span>
         <input

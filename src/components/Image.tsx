@@ -8,7 +8,7 @@ function Image({
   src: string;
   title: string;
 }): React.ReactElement {
-  return <img src={src} alt={title} style={{ height: 100 }} />;
+  return <img src={src} alt={`Image for ${title}`} style={{ height: 100 }} />;
 }
 
 Image.propTypes = {

@@ -23,10 +23,16 @@ function App() {
 
   return (
     <div className="app mt-4">
-      <h1>Movies Catalog</h1>
-      <SearchByTitle sendRequest={updateTitle} />
-      {moviesError && <MoviesError error={moviesError} />}
-      {movies && <MoviesTable movies={movies} />}
+      <header>
+        <h1>Movies Catalog</h1>
+      </header>
+      <nav>
+        <SearchByTitle sendRequest={updateTitle} />
+      </nav>
+      <main>
+        {moviesError && <MoviesError error={moviesError} />}
+        {movies && <MoviesTable movies={movies} />}
+      </main>
     </div>
   );
 }
